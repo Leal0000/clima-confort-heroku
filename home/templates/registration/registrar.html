@@ -1,0 +1,47 @@
+{% extends "home/base.html" %}
+
+{% load static%}
+
+{% block content %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+     {% for field in form %}
+     <div class="field_container">
+         {{ field.errors }}
+         {{ field.label_tag }}
+         {{ field }}
+ 
+    </div>
+     {% endfor %}
+     
+    <div style="margin-top: 20px;">
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+        <div class="btn-group" role="group">
+          <button id="btnGroupDrop1" type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+            <li>
+                Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+                Password:
+                Your password can't be too similar to your other personal information.
+                Your password must contain at least 8 characters.
+            </li>
+            
+          </ul>
+        </div>
+      </div>   
+    <input class="btn btn-danger"  type="reset" value="Limpiar">
+    <input class="btn btn-primary" type="submit" value="Registrar">
+    </div>
+
+</form>
+<div>
+    <h5 style="margin-top: 50px;">You have account?  <a href="{% url 'login' %}" class="btn btn-success">Sign in</a></h5>
+</div>
+
+
+
+
+
+{% endblock %}

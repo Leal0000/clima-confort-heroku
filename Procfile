@@ -1,0 +1,1 @@
+web: gunicorn climacomfort.wsgi --log-file -

@@ -1,0 +1,52 @@
+--Visualizamos las imagenes existentes--
+
+docker images
+
+--Si tenemos alguna imagen que tenga conflicto eliminamos la imagen--
+
+docker rmi apipostgresql 
+
+--Una vez hecho esto creamos la imagen de la api de postgres--
+
+docker build  . -t apipostgresql
+
+si llegaramos a iniciar una instancia y la elminamos, y aun asi nos marca error eliminamos la instancia con este comando--
+
+docker rm -f $(docker ps -aq)
+
+--Con este comando corremos el servidor en segundo plano y con este servidor--
+
+docker run -itd -p 8080:5000 --name api-flask  apipostgresq
+
+--Finalmente entramos ala consola del sistema virtual--
+
+docker exec  -it api-flask bash
+
+
+-- Instalamos la virtulizacion de python3--
+
+apt install python3-virtualenv
+
+--lo ejecutamos--
+
+virtualenv p --python=python3
+
+--Lo activamos--
+
+source p/bin/activate
+
+--nos aseguramos que tenemos el archivo de las librerias necesarias--
+
+cat requirements.txt 
+
+--lo ejecutamos--
+
+pip install -r requirements.txt
+
+--Migramos las bases de datos--
+
+flask db_create && flask db_seed 
+
+--Corremos el servidor--
+
+flask run
